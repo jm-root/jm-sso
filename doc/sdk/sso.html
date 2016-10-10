@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Class: sso</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+    
+    
+    <script>
+    var config = {"default":{"outputSourceFiles":true},"monospaceLinks":false,"cleverLinks":false,"anyTemplateSpecificParameter":"whatever"};
+    </script>
+    
+
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<div class="navigation">
+    <h3 class="applicationName"><a href="index.html"></a></h3>
+
+    <div class="search">
+        <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
+    </div>
+    <ul class="list">
+    
+        <li class="item" data-name="sso">
+            <span class="title">
+                <a href="sso.html">sso</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="sso#checkVerifyCode"><a href="sso.html#checkVerifyCode">checkVerifyCode</a></li>
+            
+                <li data-name="sso#getUser"><a href="sso.html#getUser">getUser</a></li>
+            
+                <li data-name="sso#getVerifyCode"><a href="sso.html#getVerifyCode">getVerifyCode</a></li>
+            
+                <li data-name="sso#signon"><a href="sso.html#signon">signon</a></li>
+            
+                <li data-name="sso#signon_guest"><a href="sso.html#signon_guest">signon_guest</a></li>
+            
+                <li data-name="sso#signout"><a href="sso.html#signout">signout</a></li>
+            
+                <li data-name="sso#signup"><a href="sso.html#signup">signup</a></li>
+            
+                <li data-name="sso#updatePasswd"><a href="sso.html#updatePasswd">updatePasswd</a></li>
+            
+                <li data-name="sso#updateUser"><a href="sso.html#updateUser">updateUser</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+    </ul>
+</div>
+    <div class="main">
+        <h1 class="page-title" data-filename="sso.html">Class: sso</h1>
+        
+
+
+
+<section>
+    
+<header>
+    <h2>
+    sso
+    </h2>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="sso">
+            
+            new sso<span class="signature">(opts)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="sso.js.html">E:/jm-root/jm-sso/sdk/sso.js</a>, <a href="sso.js.html#line20">line 20</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        sso对象
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                配置属性
+格式:{uri:'网络地址'}</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="checkVerifyCode">
+            
+            checkVerifyCode<span class="signature">(<span class="optional">opts</span>, <span class="optional">cb</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="sso.js.html">E:/jm-root/jm-sso/sdk/sso.js</a>, <a href="sso.js.html#line404">line 404</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        验证验证码
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                参数</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">callback</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    function(err, doc){}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                回调</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Examples</h5>
+        
+
+    
+    <pre class="prettyprint"><code>opts参数:{
+ key: 键值(必填)
+ code: 验证码(必填)
+}</code></pre>
+    
+
+
+    
+    <pre class="prettyprint"><code>cb参数格式:
+成功, doc参数:{
+ ret: 验证结果
+}
+失败，doc参数:{
+   'err': '错误码',
+   'msg': '错误信息'
+}</code></pre>
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="getUser">
+            
+            getUser<span class="signature">(<span class="optional">opts</span>, <span class="optional">cb</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="sso.js.html">E:/jm-root/jm-sso/sdk/sso.js</a>, <a href="sso.js.html#line207">line 207</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        获取用户信息
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                参数</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">callback</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    function(err, doc){}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                回调</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Examples</h5>
+        
+
+    
+    <pre class="prettyprint"><code>opts参数:{
+}</code></pre>
+    
+
+
+    
+    <pre class="prettyprint"><code>cb参数格式:
+成功时,doc参数:{
+  id: 用户ObjectId,
+  uid: 用户id,
+  nick: 昵称,
+  gender: 性别,
+  province: 省份,
+  city: 城市,
+  headimgurl: 头像地址,
+  signature: 签名
+}
+失败时,doc参数:{
+   'err': '错误码',
+   'msg': '错误信息'
+}</code></pre>
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="getVerifyCode">
+            
+            getVerifyCode<span class="signature">(<span class="optional">opts</span>, <span class="optional">cb</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="sso.js.html">E:/jm-root/jm-sso/sdk/sso.js</a>, <a href="sso.js.html#line373">line 373</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        获取验证码
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                参数</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">callback</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    function(err, doc){}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                回调</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Examples</h5>
+        
+
+    
+    <pre class="prettyprint"><code>opts参数:{
+ key: 键值(必填)
+ length: 验证码长度（可选）
+ expire: 过期时间，单位秒（可选）
+}</code></pre>
+    
+
+
+    
+    <pre class="prettyprint"><code>cb参数格式:
+成功, doc参数:{
+ code: 验证码
+ expire: 验证码过期时间
+}
+失败，doc参数:{
+   'err': '错误码',
+   'msg': '错误信息'
+}</code></pre>
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="signon">
+            
+            signon<span class="signature">(<span class="optional">opts</span>, <span class="optional">cb</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="sso.js.html">E:/jm-root/jm-sso/sdk/sso.js</a>, <a href="sso.js.html#line96">line 96</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        登录
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                参数</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">callback</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    function(err, doc){}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                回调</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Examples</h5>
+        
+
+    
+    <pre class="prettyprint"><code>opts参数:{
+ id: id(可选),
+ account: 账号(可选),
+ mobile: 手机号(可选),
+ email: 邮箱(可选),
+ passwd: 密码(必填),
+}</code></pre>
+    
+
+
+    
+    <pre class="prettyprint"><code>cb参数格式:
+成功时, doc参数:{
+  id: 用户ObjectId,
+  uid: 用户id,
+  nick: 昵称,
+  gender: 性别,
+  province: 省份,
+  city: 城市,
+  headimgurl: 头像地址,
+  signature: 签名
+}
+失败时, doc参数:{
+   'err': '错误码',
+   'msg': '错误信息'
+}</code></pre>
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="signon_guest">
+            
+            signon_guest<span class="signature">(<span class="optional">opts</span>, <span class="optional">cb</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="sso.js.html">E:/jm-root/jm-sso/sdk/sso.js</a>, <a href="sso.js.html#line152">line 152</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        游客登录
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                参数</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">callback</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    function(err,result){}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                回调</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Examples</h5>
+        
+
+    
+    <pre class="prettyprint"><code>opts参数:{
+}</code></pre>
+    
+
+
+    
+    <pre class="prettyprint"><code>cb参数格式:
+result参数:{
+ id: '账号id',
+ token: '令牌',
+ account: '账号',
+ passwd: '密码'
+}
+err参数:{
+   'err': '错误码',
+   'msg': '错误信息'
+}</code></pre>
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="signout">
+            
+            signout<span class="signature">(<span class="optional">cb</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="sso.js.html">E:/jm-root/jm-sso/sdk/sso.js</a>, <a href="sso.js.html#line264">line 264</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        退出登录
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">callback</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    function(err,result){}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                回调</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="signup">
+            
+            signup<span class="signature">(<span class="optional">opts</span>, <span class="optional">cb</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="sso.js.html">E:/jm-root/jm-sso/sdk/sso.js</a>, <a href="sso.js.html#line37">line 37</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        注册用户
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                参数</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">callback</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    function(err, doc){}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                回调</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Examples</h5>
+        
+
+    
+    <pre class="prettyprint"><code>opts参数:{
+ account: 账号(可选),
+ mobile: 手机号(可选),
+ email: 邮箱(可选),
+ passwd: 密码(必填),
+ nick: 昵称(可选),
+ gender: 性别(可选),
+ country: 国家(可选),
+ province: 省份(可选),
+ city: 城市(可选),
+ area: 地区(可选),
+ birthday: 生日(可选),
+ signature: 签名(可选),
+ headimgurl: 头像(可选)
+}</code></pre>
+    
+
+
+    
+    <pre class="prettyprint"><code>cb参数格式:
+成功时, doc参数:{
+  id: 用户ObjectId,
+  uid: 用户id,
+  nick: 昵称,
+  gender: 性别,
+  province: 省份,
+  city: 城市,
+  headimgurl: 头像地址,
+  signature: 签名
+}
+失败时, doc参数:{
+   'err': '错误码',
+   'msg': '错误信息'
+}</code></pre>
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="updatePasswd">
+            
+            updatePasswd<span class="signature">(<span class="optional">opts</span>, <span class="optional">cb</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="sso.js.html">E:/jm-root/jm-sso/sdk/sso.js</a>, <a href="sso.js.html#line291">line 291</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        更新密码
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                参数</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">callback</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    function(err, doc){}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                回调</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Examples</h5>
+        
+
+    
+    <pre class="prettyprint"><code>opts参数:{
+ token: token(可选, 如果不填,自动从localStorage获取),
+ newPasswd:'新密码(必填)',
+ passwd:'旧密码(必填)'
+}</code></pre>
+    
+
+
+    
+    <pre class="prettyprint"><code>cb参数格式:
+成功, doc参数:{
+}
+失败, doc参数:{
+   'err': '错误码',
+   'msg': '错误信息'
+}</code></pre>
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="updateUser">
+            
+            updateUser<span class="signature">(<span class="optional">opts</span>, <span class="optional">cb</span>)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            <a href="sso.js.html">E:/jm-root/jm-sso/sdk/sso.js</a>, <a href="sso.js.html#line328">line 328</a>
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        更新用户信息
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    {}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                参数</td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">callback</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    function(err, doc){}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                回调</td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Examples</h5>
+        
+
+    
+    <pre class="prettyprint"><code>opts参数:{
+ token: token(可选, 如果不填,自动从localStorage获取),
+ account: 账号(可选),
+ mobile: 手机号(可选),
+ email: 邮箱(可选),
+ nick: 昵称(可选),
+ gender: 性别(可选),
+ country: 国家(可选),
+ province: 省份(可选),
+ city: 城市(可选),
+ area: 地区(可选),
+ birthday: 生日(可选),
+ signature: 签名(可选),
+ headimgurl: 头像(可选)
+}</code></pre>
+    
+
+
+    
+    <pre class="prettyprint"><code>cb参数格式:
+成功, doc参数:{
+}
+失败, doc参数:{
+   'err': '错误码',
+   'msg': '错误信息'
+}</code></pre>
+    
+
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+
+        
+
+        <footer>
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Wed Sep 14 2016 15:54:24 GMT+0800 (中国标准时间)
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>

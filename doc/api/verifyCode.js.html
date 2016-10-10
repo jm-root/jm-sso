@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Source: router/verifyCode.js</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+    
+    
+    <script>
+    var config = {"default":{"outputSourceFiles":true},"monospaceLinks":false,"cleverLinks":false,"anyTemplateSpecificParameter":"whatever"};
+    </script>
+    
+
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<div class="navigation">
+    <h3 class="applicationName"><a href="index.html"></a></h3>
+
+    <div class="search">
+        <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
+    </div>
+    <ul class="list">
+    
+        <li class="item" data-name="SSO">
+            <span class="title">
+                <a href="SSO.html">SSO</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="SSO#disableAutoUid"><a href="SSO.html#disableAutoUid">disableAutoUid</a></li>
+            
+                <li data-name="SSO#disableVerifyCode"><a href="SSO.html#disableVerifyCode">disableVerifyCode</a></li>
+            
+                <li data-name="SSO#mq"><a href="SSO.html#mq">mq</a></li>
+            
+                <li data-name="SSO#tokenExpire"><a href="SSO.html#tokenExpire">tokenExpire</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="SSO#checkPasswd"><a href="SSO.html#checkPasswd">checkPasswd</a></li>
+            
+                <li data-name="SSO#checkToken"><a href="SSO.html#checkToken">checkToken</a></li>
+            
+                <li data-name="SSO#checkVerifyCode"><a href="SSO.html#checkVerifyCode">checkVerifyCode</a></li>
+            
+                <li data-name="SSO#createToken"><a href="SSO.html#createToken">createToken</a></li>
+            
+                <li data-name="SSO#createVerifyCode"><a href="SSO.html#createVerifyCode">createVerifyCode</a></li>
+            
+                <li data-name="SSO#destroyToken"><a href="SSO.html#destroyToken">destroyToken</a></li>
+            
+                <li data-name="SSO#destroyVerifyCode"><a href="SSO.html#destroyVerifyCode">destroyVerifyCode</a></li>
+            
+                <li data-name="SSO#encryptPasswd"><a href="SSO.html#encryptPasswd">encryptPasswd</a></li>
+            
+                <li data-name="SSO#findByIds"><a href="SSO.html#findByIds">findByIds</a></li>
+            
+                <li data-name="SSO#findUser"><a href="SSO.html#findUser">findUser</a></li>
+            
+                <li data-name="SSO#findUsers"><a href="SSO.html#findUsers">findUsers</a></li>
+            
+                <li data-name="SSO#isSignon"><a href="SSO.html#isSignon">isSignon</a></li>
+            
+                <li data-name="SSO#saveToken"><a href="SSO.html#saveToken">saveToken</a></li>
+            
+                <li data-name="SSO#saveVerifyCode"><a href="SSO.html#saveVerifyCode">saveVerifyCode</a></li>
+            
+                <li data-name="SSO#signon"><a href="SSO.html#signon">signon</a></li>
+            
+                <li data-name="SSO#signon_guest"><a href="SSO.html#signon_guest">signon_guest</a></li>
+            
+                <li data-name="SSO#signon_noauth"><a href="SSO.html#signon_noauth">signon_noauth</a></li>
+            
+                <li data-name="SSO#signout"><a href="SSO.html#signout">signout</a></li>
+            
+                <li data-name="SSO#signup"><a href="SSO.html#signup">signup</a></li>
+            
+                <li data-name="SSO#touchToken"><a href="SSO.html#touchToken">touchToken</a></li>
+            
+                <li data-name="SSO#updatePasswd"><a href="SSO.html#updatePasswd">updatePasswd</a></li>
+            
+                <li data-name="SSO#updateUser"><a href="SSO.html#updateUser">updateUser</a></li>
+            
+                <li data-name="SSO#updateUserExt"><a href="SSO.html#updateUserExt">updateUserExt</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="user">
+            <span class="title">
+                <a href="user.html">user</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="user#createUid"><a href="user.html#createUid">createUid</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+    </ul>
+</div>
+    <div class="main">
+        <h1 class="page-title" data-filename="verifyCode.js.html">Source: router/verifyCode.js</h1>
+        
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source "><code>var express = require('express');
+var consts = require('../consts/consts');
+var ERR = consts.ERR;
+
+module.exports = function(service, opts) {
+    var router = express.Router(opts);
+    opts = opts || {};
+    var routes = service.routes;
+
+    /**
+     * @apiGroup sso
+     * @apiVersion 0.0.1
+     * @apiUse Error
+     *
+     * @api {get} /verifyCode 获取验证码
+     * @apiName getVerifyCode
+     *
+     * @apiParam {String} key 保存验证码的key
+     * @apiParam {Number} [length] 长度
+     * @apiParam {Number} [expire] 过期时间,单位秒
+     *
+     * @apiSuccess {String} code 验证码
+     * @apiSuccess {Number} time 生成时间
+     * @apiSuccess {Number} expire 过期时间
+     * @apiExample {json} 成功:
+     *     {
+     *       code: 验证码,
+     *       time: 生成时间,
+     *       expire: 过期时间
+     *     }
+     */
+    routes.getVerifyCode = function(req, res) {
+        var key = req.query.key || req.body.key;
+        if(!key){
+            return res.send(ERR.FA_PARAMS);
+        }
+
+        var length = req.query.length || req.body.length;
+        var expire = req.query.expire || req.body.expire || 0;
+        var code = service.createVerifyCode({length: length});
+        service.saveVerifyCode(key, code, expire, function(err, doc){
+            routes.emit('getVerifyCode', req, res, err, doc);
+            if(err){
+                return res.send(doc);
+            }
+            res.send(doc);
+        });
+    };
+
+    /**
+     * @apiGroup sso
+     * @apiVersion 0.0.1
+     * @apiUse Error
+     *
+     * @api {get} /verifyCode/check 验证验证码
+     * @apiName checkVerifyCode
+     *
+     * @apiParam {String} key 保存验证码的key
+     * @apiParam {String} code 验证码
+     *
+     * @apiSuccess {Boolean} ret 返回结果
+     * @apiExample {json} 成功:
+     *     {
+     *       ret: true
+     *     }
+     * @apiExample {json} 失败:
+     *     {
+     *       ret: false
+     *     }
+     */
+    routes.checkVerifyCode = function(req, res, next) {
+        var key = req.query.key || req.body.key;
+        if(!key){
+            return res.send(ERR.FA_PARAMS);
+        }
+        var code = req.query.code || req.body.code;
+        if(!key){
+            return res.send(ERR.FA_PARAMS);
+        }
+
+        service.checkVerifyCode(key, code, function(err, doc){
+            routes.emit('checkVerifyCode', req, res, err, doc);
+            if(err){
+                return res.send(doc);
+            }
+            res.send({ret: doc});
+        });
+    };
+
+    var _getVerifyCode = function(req, res, next){routes.getVerifyCode(req, res, next);};
+    var _checkVerifyCode = function(req, res, next){routes.checkVerifyCode(req, res, next);};
+
+    router.get('/', _getVerifyCode);
+    router.get('/check', _checkVerifyCode);
+    router.post('/check', _checkVerifyCode);
+
+    return router;
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+
+        
+
+        <footer>
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Wed Sep 14 2016 15:54:25 GMT+0800 (中国标准时间)
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>

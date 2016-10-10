@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Source: service/verifyCode.js</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+    
+    
+    <script>
+    var config = {"default":{"outputSourceFiles":true},"monospaceLinks":false,"cleverLinks":false,"anyTemplateSpecificParameter":"whatever"};
+    </script>
+    
+
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<div class="navigation">
+    <h3 class="applicationName"><a href="index.html"></a></h3>
+
+    <div class="search">
+        <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
+    </div>
+    <ul class="list">
+    
+        <li class="item" data-name="SSO">
+            <span class="title">
+                <a href="SSO.html">SSO</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="SSO#disableAutoUid"><a href="SSO.html#disableAutoUid">disableAutoUid</a></li>
+            
+                <li data-name="SSO#disableVerifyCode"><a href="SSO.html#disableVerifyCode">disableVerifyCode</a></li>
+            
+                <li data-name="SSO#mq"><a href="SSO.html#mq">mq</a></li>
+            
+                <li data-name="SSO#tokenExpire"><a href="SSO.html#tokenExpire">tokenExpire</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="SSO#checkPasswd"><a href="SSO.html#checkPasswd">checkPasswd</a></li>
+            
+                <li data-name="SSO#checkToken"><a href="SSO.html#checkToken">checkToken</a></li>
+            
+                <li data-name="SSO#checkVerifyCode"><a href="SSO.html#checkVerifyCode">checkVerifyCode</a></li>
+            
+                <li data-name="SSO#createToken"><a href="SSO.html#createToken">createToken</a></li>
+            
+                <li data-name="SSO#createVerifyCode"><a href="SSO.html#createVerifyCode">createVerifyCode</a></li>
+            
+                <li data-name="SSO#destroyToken"><a href="SSO.html#destroyToken">destroyToken</a></li>
+            
+                <li data-name="SSO#destroyVerifyCode"><a href="SSO.html#destroyVerifyCode">destroyVerifyCode</a></li>
+            
+                <li data-name="SSO#encryptPasswd"><a href="SSO.html#encryptPasswd">encryptPasswd</a></li>
+            
+                <li data-name="SSO#findByIds"><a href="SSO.html#findByIds">findByIds</a></li>
+            
+                <li data-name="SSO#findUser"><a href="SSO.html#findUser">findUser</a></li>
+            
+                <li data-name="SSO#findUsers"><a href="SSO.html#findUsers">findUsers</a></li>
+            
+                <li data-name="SSO#isSignon"><a href="SSO.html#isSignon">isSignon</a></li>
+            
+                <li data-name="SSO#saveToken"><a href="SSO.html#saveToken">saveToken</a></li>
+            
+                <li data-name="SSO#saveVerifyCode"><a href="SSO.html#saveVerifyCode">saveVerifyCode</a></li>
+            
+                <li data-name="SSO#signon"><a href="SSO.html#signon">signon</a></li>
+            
+                <li data-name="SSO#signon_guest"><a href="SSO.html#signon_guest">signon_guest</a></li>
+            
+                <li data-name="SSO#signon_noauth"><a href="SSO.html#signon_noauth">signon_noauth</a></li>
+            
+                <li data-name="SSO#signout"><a href="SSO.html#signout">signout</a></li>
+            
+                <li data-name="SSO#signup"><a href="SSO.html#signup">signup</a></li>
+            
+                <li data-name="SSO#touchToken"><a href="SSO.html#touchToken">touchToken</a></li>
+            
+                <li data-name="SSO#updatePasswd"><a href="SSO.html#updatePasswd">updatePasswd</a></li>
+            
+                <li data-name="SSO#updateUser"><a href="SSO.html#updateUser">updateUser</a></li>
+            
+                <li data-name="SSO#updateUserExt"><a href="SSO.html#updateUserExt">updateUserExt</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="user">
+            <span class="title">
+                <a href="user.html">user</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="user#createUid"><a href="user.html#createUid">createUid</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+    </ul>
+</div>
+    <div class="main">
+        <h1 class="page-title" data-filename="verifyCode.js_.html">Source: service/verifyCode.js</h1>
+        
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source "><code>var consts = require('../consts/consts');
+var ERROR = consts.ERR;
+var VerifyCodeKey = consts.VerifyCodeKey;
+var _ = require('lodash');
+
+module.exports = function (model, opts) {
+    opts = opts || {};
+    var mq = model.mq;
+
+    /**
+     * 生成验证码
+     * @method SSO#createVerifyCode
+     * @param opts
+     * @example
+     * opts参数:{
+     *  length: 验证码长度(可选, 默认6)
+     * }
+     * @param cb
+     * @returns {string} 生成的验证码
+     */
+    model.createVerifyCode = function (opts, cb) {
+        opts = opts || {};
+        var length = opts.length || consts.VerifyCodeLength;
+        if(!_.isInteger(length)) length = consts.VerifyCodeLength;
+        var Num = '';
+        for (var i = 0; i &lt; length; i++) {
+            Num += Math.floor(Math.random() * 10);
+        }
+        if(cb) cb(null, Num);
+        return Num;
+    };
+
+    /**
+     * 保存验证码
+     * @method SSO#saveVerifyCode
+     * @param key
+     * @param code
+     * @param expire 过期时间，单位秒(可选，默认60秒)
+     * @param cb
+     */
+    model.saveVerifyCode = function (key, code, expire, cb) {
+        var numargs = arguments.length;
+        if(numargs == 3) {
+            cb = expire;
+            expire = 60;
+        }
+        var time = Date.now();
+        if(!code){
+            code = this.createVerifyCode();
+        }
+        var v = {
+            code: code,
+            time: time,
+            expire: expire
+        };
+        mq.hset(VerifyCodeKey, key, JSON.stringify(v), function(err, doc) {
+            if (err) {
+                cb(err, ERROR.FA_SAVE_VERIFYCODE);
+            } else {
+                cb(null, v);
+            }
+        });
+    };
+
+    /**
+     * 校验验证码
+     * @method SSO#checkVerifyCode
+     * @param key
+     * @param code
+     * @param cb
+     */
+    model.checkVerifyCode = function (key, code, cb) {
+        var self = this;
+        mq.hget(VerifyCodeKey, key, function (err, doc) {
+            if (err) {
+                cb(err, ERROR.FA_CHECK_VERIFYCODE);
+            } else {
+                if(!doc) return cb(null, false);
+                try{
+                    doc = JSON.parse(doc);
+                    if(doc.expire &amp;&amp; doc.time + doc.expire * 1000 &lt; Date.now()){
+                        self.destroyVerifyCode(key, function(err, doc){
+                            if(err){
+                                return cb(err, doc);
+                            }else{
+                                return cb(new Error(ERROR.FA_VERIFYCODE_EXPIRED.msg), ERROR.FA_VERIFYCODE_EXPIRED);
+                            }
+                        });
+                    }else{
+                        cb(null, doc.code === code);
+                    }
+                }catch(e){
+                    return cb(e, ERROR.FA_PARSE_VERIFYCODE);
+                }
+            }
+        });
+    };
+
+    /**
+     * 删除验证码
+     * @method SSO#destroyVerifyCode
+     * @param key
+     * @param cb
+     */
+    model.destroyVerifyCode = function(key, cb) {
+        mq.hdel(VerifyCodeKey, key, function(err, doc) {
+            if (err) {
+                cb(err, ERROR.FA_DESTROY_VERIFYCODE);
+            } else {
+                cb(null, doc);
+            }
+        });
+    };
+
+    return model;
+};
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+
+        
+
+        <footer>
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Wed Sep 14 2016 15:54:25 GMT+0800 (中国标准时间)
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>
