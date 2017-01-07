@@ -1,6 +1,6 @@
 {
   "name": "jm-sso",
-  "version": "0.2.13",
+  "version": "0.2.14",
   "description": "single sign on",
   "main": "./lib/index",
   "scripts": {
