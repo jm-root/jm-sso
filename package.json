@@ -1,6 +1,6 @@
 {
   "name": "jm-sso",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "description": "single sign on",
   "main": "./lib/index",
   "scripts": {
@@ -24,7 +24,7 @@
   "dependencies": {
     "validator": "*",
     "express": "*",
-    "mongoose" : "*",
+    "mongoose" : "4.7.9",
     "jm-common": "*"
   },
   "devDependencies": {
