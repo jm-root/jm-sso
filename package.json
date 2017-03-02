@@ -4,7 +4,9 @@
   "description": "single sign on",
   "main": "./lib/index",
   "scripts": {
-    "test": "node ./test.js"
+    "start": "node app",
+    "cluster": "node cluster",
+    "test": "node test"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,9 @@
   "homepage": "https://github.com/jm-root/jm-sso",
   "dependencies": {
     "validator": "*",
+    "body-parser": "*",
+    "errorhandler": "*",
+    "method-override": "*",
     "express": "*",
     "mongoose" : "4.7.9",
     "jm-common": "*"
@@ -30,9 +35,6 @@
   "devDependencies": {
     "jm-sdk-core": "*",
     "bluebird": "*",
-    "body-parser": "*",
-    "errorhandler": "*",
-    "method-override": "*",
     "morgan": "*",
     "jshint": "*",
     "gulp": "*",
