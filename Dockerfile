@@ -1,7 +1,9 @@
-# npm install --registry=https://registry.npm.taobao.org
-# docker build -t jm-sso:latest .
-# docker run -p 20100:20100 --link redis:redis --link mongo:mongo --name jm-sso -d jm-sso
-FROM dashersw/node-pm2:alpine
-MAINTAINER Jeff YU, 2651339@qq.com
-ADD . /app
-ENV APP app.json
+FROM node:alpine
+MAINTAINER Jeff YU, jeff@jamma.cn
+ENV NODE_ENV production
+RUN mkdir -p /user/app
+WORKDIR /user/app
+COPY package.json .
+RUN npm install --production && npm cache clean
+COPY . .
+CMD npm run cluster
