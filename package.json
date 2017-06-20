@@ -1,6 +1,6 @@
 {
   "name": "jm-sso",
-  "version": "0.2.17",
+  "version": "0.2.18",
   "description": "single sign on",
   "main": "./lib/index",
   "scripts": {
@@ -27,7 +27,7 @@
     "body-parser": "^1.17.2",
     "errorhandler": "^1.5.0",
     "express": "^4.15.3",
-    "jm-common": "^0.2.21",
+    "jm-common": "^0.2.22",
     "method-override": "^2.3.8",
     "mongoose": "4.7.9",
     "morgan": "^1.8.1",
