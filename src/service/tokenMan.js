@@ -1,8 +1,8 @@
+import _redis from 'redis';
+import crypto from 'crypto';
+import event from 'jm-event';
 import consts from '../consts';
 let Err = consts.Err;
-import event from 'jm-event';
-import _mq from 'jm-mq';
-import crypto from 'crypto';
 
 /**
  * Class representing a tokenMan.
@@ -14,7 +14,7 @@ class TokenMan {
      * @param {Object} opts
      * @example
      * opts参数:{
-     *  mq: (可选, 如果不填，自动连接默认 127.0.0.1:6379)
+     *  redis: (可选, 如果不填，自动连接默认 127.0.0.1:6379)
      *  secret: 安全密钥(可选，默认'')
      *  tokenKey: tokenKey, (可选, 默认'sso:token')
      *  tokenExpire: token过期时间, 单位秒(可选, 默认0永远不过期)
@@ -27,17 +27,19 @@ class TokenMan {
         this.tokenKey = opts.tokenKey || consts.TokenKey;
         this.tokenExpire = opts.tokenExpire || 0;
 
-        let cbMQ = () => {
-            this.ready = true;
+        let cbReady = () => {
+            this.emit('ready');
         };
-        let mq = opts.mq;
-        if (typeof opts.mq === 'string') {
-            mq = _mq({url: opts.mq}, cbMQ);
-        } else if (mq) {
-            this.ready = true;
+        let redis = opts.redis;
+        if (typeof opts.redis === 'string') {
+            redis = _redis.createClient(opts.redis);
+            redis.once('ready', cbReady);
         }
-        mq || (mq = _mq(null, cbMQ));
-        this.mq = mq;
+        if (!redis) {
+            redis = _redis.createClient();
+            redis.once('ready', cbReady);
+        }
+        this.redis = redis;
     }
 
     /**
@@ -66,11 +68,11 @@ class TokenMan {
      * @return {TokenMan} for chaining
      */
     add (opts = {}, cb) {
-        let mq = this.mq;
+        let redis = this.redis;
         opts.expire || (opts.expire = this.tokenExpire);
         opts.token || (opts.token = this.create(opts.id));
         opts.time || (opts.time = Date.now());
-        mq.hset(this.tokenKey, opts.token,
+        redis.hset(this.tokenKey, opts.token,
             JSON.stringify(opts), function (err, doc) {
                 if (err) {
                     doc = Err.FA_ADD_TOKEN;
@@ -90,12 +92,12 @@ class TokenMan {
      */
     check (token, cb) {
         let self = this;
-        let mq = this.mq;
+        let redis = this.redis;
         if (!token) {
             cb(null, Err.FA_TOKEN_INVALID);
             return this;
         }
-        mq.hget(this.tokenKey, token, function (err, doc) {
+        redis.hget(this.tokenKey, token, function (err, doc) {
             if (err) {
                 doc = Err.FA_CHECK_TOKEN;
             } else if (doc) {
@@ -126,7 +128,7 @@ class TokenMan {
      */
     touch (token, cb) {
         let self = this;
-        let mq = this.mq;
+        let redis = this.redis;
         if (!token) {
             cb(null, Err.FA_TOKEN_INVALID);
             return this;
@@ -135,7 +137,7 @@ class TokenMan {
             if (!err && doc && !doc.err) {
                 doc.time = Date.now();
                 let ret = doc;
-                mq.hset(self.tokenKey, token, JSON.stringify(doc),
+                redis.hset(self.tokenKey, token, JSON.stringify(doc),
                     function (err, doc) {
                         if (err) {
                             doc = Err.FA_TOUCH_TOKEN;
@@ -162,8 +164,8 @@ class TokenMan {
             cb(null, Err.FA_TOKEN_INVALID);
             return this;
         }
-        let mq = this.mq;
-        mq.hdel(this.tokenKey, token, function (err, doc) {
+        let redis = this.redis;
+        redis.hdel(this.tokenKey, token, function (err, doc) {
             err && (doc = Err.FA_DELETE_TOKEN);
             cb && (cb(err, doc));
         });
