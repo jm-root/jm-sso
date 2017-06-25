@@ -1,12 +1,12 @@
 {
   "name": "jm-sso",
-  "version": "0.2.18",
+  "version": "1.0.0",
   "description": "single sign on",
   "main": "./lib/index",
   "scripts": {
-    "start": "node app",
-    "cluster": "node cluster",
-    "test": "node test"
+    "start": "node node_modules/jm-server/bin/jm-server",
+    "cluster": "node node_modules/jm-server/bin/jm-server --cluster",
+    "test": "node node_modules/babel-cli/bin/babel-node ./node_modules/mocha/bin/_mocha test"
   },
   "repository": {
     "type": "git",
@@ -14,36 +14,42 @@
   },
   "keywords": [
     "javascript",
-    "jm-sso",
-    "sso"
+    "jm-sso"
   ],
-  "author": "Jeff YU",
+  "author": {
+    "name": "Jeff YU"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jm-root/jm-sso/issues"
   },
   "homepage": "https://github.com/jm-root/jm-sso",
   "dependencies": {
-    "body-parser": "^1.17.2",
-    "errorhandler": "^1.5.0",
-    "express": "^4.15.3",
-    "jm-common": "^0.2.22",
-    "method-override": "^2.3.8",
-    "mongoose": "4.7.9",
-    "morgan": "^1.8.1",
-    "validator": "^7.0.0"
+    "jm-mq": "^0.2.2",
+    "jm-server": "^1.0.2",
+    "validator": "^7.1.0"
   },
   "devDependencies": {
-    "jm-sdk-core": "*",
-    "bluebird": "*",
-    "jshint": "*",
-    "gulp": "*",
-    "gulp-clean": "*",
-    "gulp-concat": "*",
-    "gulp-jshint": "*",
-    "gulp-rename": "*",
-    "gulp-sequence": "*",
-    "gulp-uglify": "*",
-    "gulp-util": "*"
+    "bluebird": "^3.5.0",
+    "babel-cli": "^6.24.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "^1.5.1",
+    "benchmark": "^2.1.4",
+    "chai": "^4.0.0",
+    "eslint-config-google": "^0.7.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-browserify": "^0.5.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-jsdoc3": "^1.0.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-sequence": "^0.4.6",
+    "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8",
+    "jshint": "^2.9.4",
+    "mocha": "^3.4.2"
   }
 }

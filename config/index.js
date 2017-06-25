@@ -1,26 +1,27 @@
+require('log4js').configure(__dirname + '/log4js.json');
 var config = {
     development: {
         port: 20100,
-        prefix: '/sso'
+        modules: {
+            sso: {
+                module: process.cwd() + '/lib'
+            }
+        }
     },
     production: {
         port: 20100,
-        prefix: '/sso',
+        mq: 'redis://redis.db',
         tokenExpire: 3600,
-        disableVerifyCode: false,
-        disableAutoUid: false,
-        mq: 'redis://redis:6379',
-        db: 'mongodb://mongo/sso'
+        modules: {
+            sso: {
+                module: process.cwd() + '/lib'
+            }
+        }
     }
 };
 
-var env = process.env.NODE_ENV||'development';
-config = config[env]||config['development'];
+var env = process.env.NODE_ENV || 'development';
+config = config[env] || config['development'];
 config.env = env;
 
-['port', 'prefix', 'db', 'mq'].forEach(function(key) {
-    process.env[key] && (config[key]=process.env[key]);
-});
-
 module.exports = config;
-

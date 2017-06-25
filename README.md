@@ -1,20 +1,23 @@
-jm-sso
-======
+# jm-sso
 
-Single Sign On
+single sign on
 
-use:
+## run:
 
-var express = require('express');
-var jmcommon = require('jm-common');
-var DB = jmcommon.DB;
-var sso = require('jm-sso');
+npm start
 
-DB.connect(null, false, function(err, db){
-    var s = sso();
+## run in cluster mode:
 
-    //use with express
-    var app = express();
-    app.use('/sso', s.router());
+npm run cluster
 
-}
+## config
+
+基本配置 请参考 [jm-server] (https://github.com/jm-root/jm-server)
+
+mq [] Redis数据库uri
+
+secret [''] 密钥
+
+tokenKey ['sso:token'] Redis数据库主键
+
+tokenExpire [0] Token 过期时间, 单位秒(可选, 默认0永远不过期)
