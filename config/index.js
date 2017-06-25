@@ -10,7 +10,7 @@ var config = {
     },
     production: {
         port: 20100,
-        mq: 'redis://redis.db',
+        redis: 'redis://redis.db',
         tokenExpire: 3600,
         modules: {
             sso: {

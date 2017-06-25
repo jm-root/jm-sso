@@ -1,6 +1,7 @@
 let MS = require('jm-ms-core');
 let ms = new MS();
 import event from 'jm-event';
+import help from './help';
 
 /**
  * @apiDefine Error
@@ -73,6 +74,7 @@ module.exports = function (opts = {}) {
         routes.touch(opts, cb, next);
     };
 
+    router.use(help(service));
     router
         .add('/signon', 'post', _signon)
         .add('/signout', 'get', _signout)

@@ -14,7 +14,7 @@ npm run cluster
 
 基本配置 请参考 [jm-server] (https://github.com/jm-root/jm-server)
 
-mq [] Redis数据库uri
+redis [] Redis数据库uri
 
 secret [''] 密钥
 
