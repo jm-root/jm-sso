@@ -1,5 +1,6 @@
 import event from 'jm-event';
 import TokenMan from './tokenMan';
+import t from '../locale';
 
 /**
  * Class representing a sso.
@@ -19,6 +20,7 @@ class SSO {
      */
     constructor (opts = {}) {
         event.enableEvent(this);
+        this.t = t;
         this.ready = false;
         this.tokenMan = new TokenMan(opts);
         this.tokenMan.once('ready', () => {

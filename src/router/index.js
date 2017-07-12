@@ -1,6 +1,8 @@
 let MS = require('jm-ms-core');
 let ms = new MS();
 import event from 'jm-event';
+import error from 'jm-err';
+let Err = error.Err;
 import help from './help';
 
 /**
@@ -24,8 +26,15 @@ module.exports = function (opts = {}) {
     let routes = service.routes;
     event.enableEvent(routes);
 
+    let t = function (doc, lng) {
+        if(doc && lng && doc.err && doc.msg) {
+            doc.msg = service.t(doc.msg, lng) || Err.t(doc.msg, lng) || doc.msg;
+        }
+    };
+
     routes.signon = function (opts = {}, cb, next) {
         service.signon(opts.data, function (err, doc) {
+            t(doc, opts.lng);
             if (!err) {
                 routes.emit('signon', opts, doc);
             }
@@ -35,6 +44,7 @@ module.exports = function (opts = {}) {
 
     routes.signout = function (opts = {}, cb, next) {
         service.signout(opts.data.token, function (err, doc) {
+            t(doc, opts.lng);
             if (!err) {
                 routes.emit('signout', opts, doc);
                 doc = {ret: doc};
@@ -45,6 +55,7 @@ module.exports = function (opts = {}) {
 
     routes.isSignon = function (opts = {}, cb, next) {
         service.isSignon(opts.data.token, function (err, doc) {
+            t(doc, opts.lng);
             if (!err) {
                 routes.emit('isSignon', opts, doc);
             }
@@ -54,6 +65,7 @@ module.exports = function (opts = {}) {
 
     routes.touch = function (opts = {}, cb, next) {
         service.touch(opts.data.token, function (err, doc) {
+            t(doc, opts.lng);
             if (!err) {
                 routes.emit('touch', opts, doc);
             }
@@ -79,9 +91,9 @@ module.exports = function (opts = {}) {
         .add('/signon', 'post', _signon)
         .add('/signout', 'get', _signout)
         .add('/isSignon', 'get', _isSignon)
+        .add('/user', 'get', _isSignon)
         .add('/touch', 'get', _touch)
     ;
 
     return router;
 };
-
