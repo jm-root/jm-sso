@@ -1,7 +1,9 @@
 require('log4js').configure(__dirname + '/log4js.json');
 var config = {
     development: {
-        port: 20100,
+        debug: true,
+        lng: 'zh_CN',
+        port: 3000,
         modules: {
             sso: {
                 module: process.cwd() + '/lib'
@@ -9,7 +11,7 @@ var config = {
         }
     },
     production: {
-        port: 20100,
+        port: 3000,
         redis: 'redis://redis.db',
         tokenExpire: 3600,
         modules: {
