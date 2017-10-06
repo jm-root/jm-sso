@@ -1,29 +1,34 @@
-require('log4js').configure(__dirname + '/log4js.json');
+require('log4js').configure(require('path').join(__dirname, 'log4js.json'))
 var config = {
-    development: {
-        debug: true,
-        lng: 'zh_CN',
-        port: 3000,
-        modules: {
-            sso: {
-                module: process.cwd() + '/lib'
-            }
-        }
-    },
-    production: {
-        port: 3000,
-        redis: 'redis://redis.db',
-        tokenExpire: 3600,
-        modules: {
-            sso: {
-                module: process.cwd() + '/lib'
-            }
-        }
+  development: {
+    debug: true,
+    lng: 'zh_CN',
+    port: 3000,
+    mqtt: 'mqtt://root:123@api.h5.jamma.cn',
+    modules: {
+      sso: {
+        module: process.cwd() + '/lib'
+      },
+      'jm-sso-mqtt': {}
     }
-};
+  },
+  production: {
+    port: 80,
+    redis: 'redis://redis.db',
+    tokenExpire: 3600,
+    modules: {
+      sso: {
+        module: process.cwd() + '/lib'
+      },
+      'jm-sso-mqtt': {}
+    }
+  }
+}
 
-var env = process.env.NODE_ENV || 'development';
-config = config[env] || config['development'];
-config.env = env;
+var env = process.env.NODE_ENV || 'development'
+config = config[env] || config['development']
+config.env = env
 
-module.exports = config;
+if (process.env['disableMQTT']) delete config.modules['jm-sso-mqtt']
+
+module.exports = config
