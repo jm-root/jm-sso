@@ -22,12 +22,5 @@ export default function (opts = {}) {
   let o = new Service(opts)
   o.router = router
 
-  o
-    .on('signon', function (doc) {
-      console.log('signon %j', doc)
-    })
-    .on('signout', function (doc) {
-      console.log('signout %j', doc)
-    })
   return o
 };
