@@ -1,9 +1,10 @@
-let MS = require('jm-ms-core');
-let ms = new MS();
-import event from 'jm-event';
-import error from 'jm-err';
-let Err = error.Err;
-import help from './help';
+import event from 'jm-event'
+import error from 'jm-err'
+import help from './help'
+
+let MS = require('jm-ms-core')
+let ms = new MS()
+let Err = error.Err
 
 /**
  * @apiDefine Error
@@ -19,81 +20,70 @@ import help from './help';
  */
 
 module.exports = function (opts = {}) {
-    let service = this;
-    let router = ms.router();
+  let service = this
+  let router = ms.router()
 
-    service.routes || (service.routes = {});
-    let routes = service.routes;
-    event.enableEvent(routes);
+  service.routes || (service.routes = {})
+  let routes = service.routes
+  event.enableEvent(routes)
 
-    let t = function (doc, lng) {
-        if(doc && lng && doc.err && doc.msg) {
-            doc.msg = service.t(doc.msg, lng) || Err.t(doc.msg, lng) || doc.msg;
-        }
-    };
+  let t = function (doc, lng) {
+    if (doc && lng && doc.err && doc.msg) {
+      doc.msg = service.t(doc.msg, lng) || Err.t(doc.msg, lng) || doc.msg
+    }
+  }
 
-    routes.signon = function (opts = {}, cb, next) {
-        service.signon(opts.data, function (err, doc) {
-            t(doc, opts.lng);
-            if (!err) {
-                routes.emit('signon', opts, doc);
-            }
-            cb(err, doc);
-        });
-    };
+  routes.signon = function (opts = {}, cb, next) {
+    service.signon(opts.data, function (err, doc) {
+      t(doc, opts.lng)
+      cb(err, doc)
+    })
+  }
 
-    routes.signout = function (opts = {}, cb, next) {
-        service.signout(opts.data.token, function (err, doc) {
-            t(doc, opts.lng);
-            if (!err) {
-                routes.emit('signout', opts, doc);
-                doc = {ret: doc};
-            }
-            cb(err, doc);
-        });
-    };
+  routes.signout = function (opts = {}, cb, next) {
+    service.signout(opts.data.token, function (err, doc) {
+      t(doc, opts.lng)
+      if (!err) {
+        doc = {ret: doc}
+      }
+      cb(err, doc)
+    })
+  }
 
-    routes.isSignon = function (opts = {}, cb, next) {
-        service.isSignon(opts.data.token, function (err, doc) {
-            t(doc, opts.lng);
-            if (!err) {
-                routes.emit('isSignon', opts, doc);
-            }
-            cb(err, doc);
-        });
-    };
+  routes.isSignon = function (opts = {}, cb, next) {
+    service.isSignon(opts.data.token, function (err, doc) {
+      t(doc, opts.lng)
+      cb(err, doc)
+    })
+  }
 
-    routes.touch = function (opts = {}, cb, next) {
-        service.touch(opts.data.token, function (err, doc) {
-            t(doc, opts.lng);
-            if (!err) {
-                routes.emit('touch', opts, doc);
-            }
-            cb(err, doc);
-        });
-    };
+  routes.touch = function (opts = {}, cb, next) {
+    service.touch(opts.data.token, function (err, doc) {
+      t(doc, opts.lng)
+      cb(err, doc)
+    })
+  }
 
-    let _signon = function (opts, cb, next) {
-        routes.signon(opts, cb, next);
-    };
-    let _signout = function (opts, cb, next) {
-        routes.signout(opts, cb, next);
-    };
-    let _isSignon = function (opts, cb, next) {
-        routes.isSignon(opts, cb, next);
-    };
-    let _touch = function (opts, cb, next) {
-        routes.touch(opts, cb, next);
-    };
+  let _signon = function (opts, cb, next) {
+    routes.signon(opts, cb, next)
+  }
+  let _signout = function (opts, cb, next) {
+    routes.signout(opts, cb, next)
+  }
+  let _isSignon = function (opts, cb, next) {
+    routes.isSignon(opts, cb, next)
+  }
+  let _touch = function (opts, cb, next) {
+    routes.touch(opts, cb, next)
+  }
 
-    router.use(help(service));
-    router
-        .add('/signon', 'post', _signon)
-        .add('/signout', 'get', _signout)
-        .add('/isSignon', 'get', _isSignon)
-        .add('/user', 'get', _isSignon)
-        .add('/touch', 'get', _touch)
-    ;
+  router.use(help(service))
+  router
+    .add('/signon', 'post', _signon)
+    .add('/signout', 'get', _signout)
+    .add('/isSignon', 'get', _isSignon)
+    .add('/user', 'get', _isSignon)
+    .add('/touch', 'get', _touch)
 
-    return router;
-};
+  return router
+}

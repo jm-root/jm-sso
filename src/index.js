@@ -1,5 +1,5 @@
-import Service from './service';
-import router from './router';
+import Service from './service'
+import router from './router'
 
 /**
  * sso module.
@@ -15,11 +15,19 @@ import router from './router';
  * @return {SSO}
  */
 export default function (opts = {}) {
-    ['redis', 'tokenExpire', 'tokenKey', 'secret'].forEach(function (key) {
-        process.env[key] && (opts[key] = process.env[key]);
-    });
+  ['redis', 'tokenExpire', 'tokenKey', 'secret'].forEach(function (key) {
+    process.env[key] && (opts[key] = process.env[key])
+  })
 
-    let o = new Service(opts);
-    o.router = router;
-    return o;
+  let o = new Service(opts)
+  o.router = router
+
+  o
+    .on('signon', function (doc) {
+      console.log('signon %j', doc)
+    })
+    .on('signout', function (doc) {
+      console.log('signout %j', doc)
+    })
+  return o
 };
