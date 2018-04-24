@@ -1,7 +1,7 @@
-import chai from 'chai'
+const chai = require('chai')
 let expect = chai.expect
-import config from '../config'
-import $ from '../src'
+const config = require('../config')
+const $ = require('../lib')
 
 let log = function (err, doc) {
   if (err) console.error(err.stack)
