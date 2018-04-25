@@ -1,8 +1,8 @@
-import chai from 'chai'
+const chai = require('chai')
 let expect = chai.expect
-import config from '../config'
-import $ from '../src/service'
-import consts from '../src/consts'
+const config = require('../config')
+const $ = require('../lib/service')
+const consts = require('../lib/consts')
 let Err = consts.Err
 
 let log = function (err, doc) {
