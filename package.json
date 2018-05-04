@@ -1,11 +1,13 @@
 {
   "name": "jm-sso",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "single sign on",
   "main": "./lib/index",
   "scripts": {
     "start": "jm-server",
-    "test": "mocha tests"
+    "cluster": "jm-server --cluster",
+    "test": "mocha tests",
+    "benchmark": "matcha benchmark"
   },
   "repository": {
     "type": "git",
@@ -37,6 +39,7 @@
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
+    "matcha": "^0.7.0",
     "mocha": "^3.4.2"
   }
 }

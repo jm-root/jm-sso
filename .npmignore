@@ -1,7 +1,7 @@
 .git
 .idea
 .svn
-examples
-src
-bench
+benchmark
 docs
+logs
+tests

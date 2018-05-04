@@ -2,6 +2,8 @@
 
 single sign on
 
+[api doc] (https://app.swaggerhub.com/apis/jm-root/jm-sso/2.0.0)
+
 ## run:
 
 npm start
@@ -20,4 +22,4 @@ secret [''] 密钥
 
 tokenKey ['sso:token'] Redis数据库主键
 
-tokenExpire [0] Token 过期时间, 单位秒(可选, 默认0永远不过期)
+tokenExpire [7200] Token 过期时间, 单位秒(可选, 默认7200秒)

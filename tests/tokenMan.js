@@ -6,36 +6,34 @@ const consts = require('../lib/consts')
 let Err = consts.Err
 
 let log = function (err, doc) {
-  if (err) console.error(err.stack)
+  if (err)
+    console.error(err.stack)
   if (doc) console.log(doc)
 }
 
 let service = new $(config)
 describe('tokenMan', function () {
-  it('add and check', function (done) {
-    service.add({
+  it('add and check', async function () {
+    let doc = await service.add({
       id: 1,
       name: 'jeff'
-    }, function (err, doc) {
-      let token = doc.token
-      service.check(token, function (err, doc) {
-        expect(err === null).to.be.ok
-        done()
-      })
     })
+    doc = await service.verify(doc.token)
+    expect(doc.token).to.be.ok
   })
 
-  it('delete', function (done) {
-    service.add({
+  it('delete', async function () {
+    let doc = await service.add({
       id: 1,
       name: 'jeff'
-    }, function (err, doc) {
-      let token = doc.token
-      service.delete(token, function (err, doc) {
-        expect(doc === 1).to.be.ok
-        done()
-      })
     })
+    let token = doc.token
+    doc = await service.delete(token)
+    try {
+      doc = await service.verify(token)
+      expect(doc).to.be.not.ok
+    } catch (e) {
+    }
   })
 
   it('expire', function (done) {
@@ -43,17 +41,18 @@ describe('tokenMan', function () {
       id: 1,
       expire: 1,
       name: 'jeff'
-    }, function (err, doc) {
-      log(err, doc)
-      let token = doc.token
-      setTimeout(function () {
-        service.check(token, function (err, doc) {
-          log(err, doc)
-          expect(doc === Err.FA_TOKEN_EXPIRED).to.be.ok
-          done()
-        })
-      }, 1500)
     })
+      .then(function (doc) {
+        setTimeout(function () {
+          service.verify(doc.token)
+            .then(function (doc) {
+            })
+            .catch(e=>{
+              done()
+            })
+        }, 1500)
+
+      })
   })
 
   it('touch', function (done) {
@@ -61,19 +60,18 @@ describe('tokenMan', function () {
       id: 1,
       expire: 1,
       name: 'jeff'
-    }, function (err, doc) {
-      log(err, doc)
-      let token = doc.token
-      setTimeout(function () {
-        service.touch(token, function (err, doc) {
-          log(err, doc)
-          service.check(token, function (err, doc) {
-            log(err, doc)
-            expect(err === null).to.be.ok
-            done()
-          })
-        })
-      }, 1500)
     })
+      .then(function (doc) {
+        return service.touch(doc.token, {expire: 500, value: 'abc', name: 'jeff2'})
+      })
+      .then(function (doc) {
+        setTimeout(function () {
+          service.verify(doc.token)
+            .then(function (doc) {
+              expect(doc).to.be.ok
+              done()
+            })
+        }, 1500)
+      })
   })
 })

@@ -10,51 +10,33 @@ let log = function (err, doc) {
 
 let service = new $(config)
 let router = service.router()
+let signon = async (opts = {id: 1}) => {
+  let doc = await router.post('/signon', {id: 1})
+  return doc
+}
 describe('router', function () {
-  it('signon', function (done) {
-    router.post('/signon', {id: 1}, function (err, doc) {
-      log(err, doc)
-      expect(err === null).to.be.ok
-      done()
-    })
+  it('signon', async function () {
+    let doc = await signon()
+    expect(doc.token).to.be.ok
   })
 
-  it('isSignon', function (done) {
-    router.post('/signon', {id: 1}, function (err, doc) {
-      log(err, doc)
-      let token = doc.token
-      router.get('/isSignon', {token}, function (err, doc) {
-        log(err, doc)
-        expect(err === null).to.be.ok
-        done()
-      })
-    })
+  it('isSignon', async function () {
+    let doc = await signon()
+    let token = doc.token
+    doc = await router.get('/isSignon', {token})
+    expect(doc.token).to.be.ok
   })
 
-  it('touch', function (done) {
-    router.post('/signon', {id: 1}, function (err, doc) {
-      log(err, doc)
-      let token = doc.token
-      setTimeout(() => {
-        router.get('/touch', {token}, function (err, doc2) {
-          log(err, doc2)
-          expect(doc2.time > doc.time).to.be.ok
-          done()
-        })
-      },
-      100)
-    })
+  it('touch', async function () {
+    let doc = await signon()
+    let token = doc.token
+    let doc2 = await router.get('/touch', {token})
+    expect(doc2.time > doc.time).to.be.ok
   })
 
-  it('signout', function (done) {
-    router.post('/signon', {id: 1}, function (err, doc) {
-      log(err, doc)
-      let token = doc.token
-      router.get('/signout', {token}, function (err, doc) {
-        log(err, doc)
-        expect(doc.ret).to.be.ok
-        done()
-      })
-    })
+  it('signout', async function () {
+    let doc = await signon()
+    let token = doc.token
+    doc = await router.get('/signout', {token})
   })
 })
