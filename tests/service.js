@@ -12,60 +12,53 @@ let log = function (err, doc) {
 
 let service = new $(config)
 describe('service', function () {
-  it('signon', function (done) {
-    service.signon({
+  it('signon', async function () {
+    let doc = await service.signon({
       id: 1
-    }, function (err, doc) {
-      log(err, doc)
-      expect(err === null).to.be.ok
-      done()
     })
+    expect(doc.token).to.be.ok
   })
 
-  it('isSignon', function (done) {
-    service.signon({
+  it('verify', async function () {
+    let doc = await service.signon({
       id: 1
-    }, function (err, doc) {
-      log(err, doc)
-      service.isSignon(doc.token, function (err, doc) {
-        log(err, doc)
-        expect(err === null).to.be.ok
-        done()
-      })
     })
+    doc = await service.verify(doc.token)
+    expect(doc.token).to.be.ok
   })
+
 
   it('touch', function (done) {
     service.signon({
-      id: 1
-    }, function (err, doc) {
-      log(err, doc)
-      let token = doc.token
-      setTimeout(() => {
-        service.touch(token, function (err, doc2) {
-          log(err, doc2)
-          expect(doc2.time > doc.time).to.be.ok
-          done()
-        })
-      },
-      100)
+      id: 1,
+      expire: 1,
     })
+      .then(doc => {
+        return service.touch(doc.token, {expire: 50})
+      })
+      .then(doc => {
+        setTimeout(() => {
+            service.verify(doc.token)
+              .then(doc => {
+                expect(doc.token).to.be.ok
+                done()
+              })
+          },
+          1500)
+      })
   })
 
-  it('signout', function (done) {
-    service.signon({
+
+  it('signout', async function () {
+    let doc = await service.signon({
       id: 1
-    }, function (err, doc) {
-      log(err, doc)
-      let token = doc.token
-      service.signout(token, function (err, doc) {
-        log(err, doc)
-        service.isSignon(token, function (err, doc) {
-          log(err, doc)
-          expect(doc === Err.FA_TOKEN_INVALID).to.be.ok
-          done()
-        })
-      })
     })
+    let token = doc.token
+    doc = await service.signout(token)
+    try {
+      doc = await service.verify(token)
+      expect(doc).to.be.not.ok
+    } catch (e) {
+    }
   })
 })

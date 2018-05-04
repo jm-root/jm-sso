@@ -1,5 +1,15 @@
 # History
 
+## 2.0.0 / 2018-05-04
+- hset -> set
+- redis expire
+- async await
+- log
+- default expire 7200 seconds
+
+## 1.1.1 / 2018-04-25
+- es6
+
 ## 1.1.0 / 2017-10-06
 - change event
 - using jm-sso-mqtt
