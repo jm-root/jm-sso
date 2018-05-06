@@ -30,7 +30,7 @@ describe('router', function () {
   it('touch', async function () {
     let doc = await signon()
     let token = doc.token
-    let doc2 = await router.get('/touch', {token})
+    let doc2 = await router.get('/touch', {token: token, data: {name: 'jeff'}})
     expect(doc2.time > doc.time).to.be.ok
   })
 
