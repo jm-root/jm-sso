@@ -24,7 +24,6 @@
   ],
   "replaceConsole": true,
   "levels": {
-    "sso": "info",
-    "jm-server": "info"
+    "sso": "info"
   }
 }
