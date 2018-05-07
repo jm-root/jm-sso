@@ -15,7 +15,7 @@ var config = {
   production: {
     port: 80,
     redis: 'redis://redis.db',
-    tokenExpire: 3600,
+    tokenExpire: 7200,
     modules: {
       sso: {
         module: process.cwd() + '/lib'
