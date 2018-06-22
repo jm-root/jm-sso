@@ -1,5 +1,8 @@
 # History
 
+## 2.0.1 / 2018-06-22
+- http header Authorization as token first
+
 ## 2.0.0 / 2018-05-04
 - hset -> set
 - redis expire
