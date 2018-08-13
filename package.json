@@ -1,6 +1,6 @@
 {
   "name": "jm-sso",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "single sign on",
   "main": "./lib/index",
   "scripts": {
@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/jm-root/jm-sso",
   "dependencies": {
+    "config": "^2.0.1",
     "jm-ms-help": "^1.0.0",
     "jm-server": "^1.0.9",
     "jm-sso-mqtt": "^0.0.2",
@@ -33,12 +34,10 @@
   },
   "devDependencies": {
     "benchmark": "^2.1.4",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.1.1",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1",
     "jest": "^22.4.3",
     "matcha": "^0.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
