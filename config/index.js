@@ -5,7 +5,7 @@ var config = {
     lng: 'zh_CN',
     port: 3000,
     mqtt: 'mqtt://root:123@api.h5.jamma.cn',
-    deleteById: true,
+    enable_id: true,
     modules: {
       sso: {
         module: process.cwd() + '/lib'
@@ -17,7 +17,7 @@ var config = {
     port: 80,
     redis: 'redis://redis.db',
     tokenExpire: 7200,
-    deleteById: false,
+    enable_id: false,
     modules: {
       sso: {
         module: process.cwd() + '/lib'
