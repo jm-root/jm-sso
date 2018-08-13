@@ -39,6 +39,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserInfo'
+  /signout/{id}:
+    get:
+      description: 登出指定id的所有token
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: token
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 登出成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
   /verify:
     get:
       description: 查询是否有效登记

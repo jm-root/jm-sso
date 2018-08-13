@@ -1,5 +1,8 @@
 # History
 
+## 2.0.2 / 2018-08-13
+- enable_id
+
 ## 2.0.1 / 2018-06-22
 - http header Authorization as token first
 
