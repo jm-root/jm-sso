@@ -1,8 +1,13 @@
+---
+theme : "white"
+---
+
 # jm-sso
 
 single sign on
 
-[api doc] (https://app.swaggerhub.com/apis/jm-root/jm-sso/2.0.0)
+<small>作者：[鱼哥](https://github.com/jammacn)</small>
+
 
 ## run:
 
