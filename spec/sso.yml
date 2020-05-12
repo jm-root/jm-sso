@@ -1,0 +1,194 @@
+# 约定
+# schema定义名称大写字母开头代表一个对象类型，小写字母开头代表一个基本类型
+# 例如 Role表示{id:'guest'} role表示'guest'
+# Roles表示[{id:'guest'}] roles表示['guest']
+openapi: 3.0.0
+servers:
+  - url: 'https://api.jamma.cn/sso'
+  - url: 'http://gateway.l.jamma.cn/sso'
+  - url: 'http://api.l.jamma.cn/sso'
+  - url: 'http://localhost:3000/sso'
+info:
+  version: 2.0.2
+  title: sso
+  description: sso api
+  contact:
+    name: jeff
+    url: 'https://github.com/jammacn'
+    email: jeff@jamma.cn
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: common
+    description: 常用接口
+externalDocs:
+  url: 'https://github.com/jm-root/sso'
+paths:
+  /signon:
+    post:
+      summary: 登记
+      description: 成功后生成token和登记的信息, token默认过期时间7200秒
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignInfo'
+      responses:
+        '200':
+          description: 登记成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+        default:
+          $ref: '#/components/responses/Err'
+  /verify:
+    get:
+      summary: 鉴证
+      description: 查询是否有效登记
+      parameters:
+        - name: token
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 查询结果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+        default:
+          $ref: '#/components/responses/Err'
+  /touch:
+    get:
+      summary: 更新登记
+      description: 延长token过期时间
+      parameters:
+        - name: token
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 结果
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+        default:
+          $ref: '#/components/responses/Err'
+  /signout:
+    get:
+      summary: 登出
+      description: 清除token及附加信息
+      parameters:
+        - name: token
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 登出成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+  /signout/{id}:
+    get:
+      summary: 登出指定id
+      description: 登出指定id的所有token, 注意服务的enable_id参数需要设置为true时才生效
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: 登出成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+        default:
+          $ref: '#/components/responses/Err'
+components:
+  schemas:
+    Err:
+      type: object
+      properties:
+        err:
+          type: integer
+          format: int32
+          example: 1
+          description: 错误编码
+        msg:
+          type: string
+          example: Fail
+          description: 错误信息
+        status:
+          type: integer
+          format: int32
+          example: 500
+          description: 状态码
+    SignInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '5d9d5af874050000c7006b43'
+        expire:
+          type: integer
+          format: int32
+          example: 0
+      description: 登记信息
+    TokenInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '5d9d5af874050000c7006b43'
+        token:
+          type: string
+          example: '3a90dd3a53914eae857793297738574a85ae74e5914fce723b9dc82d562a31cf'
+        expire:
+          type: integer
+          format: int32
+          example: 7200
+        time:
+          type: integer
+          format: int64
+          example: 1524634308844
+      description: Token信息
+    UserInfo:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '596d5cb3baeeaf00203de4ec'
+        tokens:
+          type: array
+          items:
+            type: string
+      description: 用户信息
+  parameters:
+    id:
+      name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+  responses:
+    Err:
+      description: 返回错误
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Err'
+  examples:
+    id:
+      summary: 用户
+      value: '5d9d5af874050000c7006b43'
+
